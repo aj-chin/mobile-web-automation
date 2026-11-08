@@ -1,0 +1,9 @@
+
+TWITCH_URL = "https://www.twitch.tv"
+SEARCH_KEYWORD = "StarCraft II"
+CATEGORY_SLUG = "starcraft-ii"
+
+SEARCH_DELAY = 5
+SCROLL_COUNT = 2
+SCROLL_DELAY = 2
+PLAYER_DELAY = 10
