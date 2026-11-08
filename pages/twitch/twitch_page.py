@@ -3,13 +3,14 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
 
 from tests.twitch.config import (
-    TWITCH_URL,
+    SCROLL_COUNT,
+    SCROLL_DELAY,
     SEARCH_DELAY,
+    TWITCH_URL,
 )
-from tests.twitch.config import SCROLL_COUNT, SCROLL_DELAY
-
 from utils.browser_actions import BrowserActions
 
 
@@ -53,21 +54,18 @@ class TwitchPage:
         )
         self.actions.click(category_locator)
 
-    def scroll_streamers(self):
-        self.actions.scroll_down(
-            times=SCROLL_COUNT,
-            delay=SCROLL_DELAY
-        )
-
     def wait_for_streamers(self, timeout=10):
-        from selenium.webdriver.support.ui import WebDriverWait
-
         WebDriverWait(self.driver, timeout).until(
             lambda browser: len(
                 browser.find_elements(*self.STREAM_CARDS)
             ) > 0
         )
 
+    def scroll_streamers(self):
+        self.actions.scroll_down(
+            times=SCROLL_COUNT,
+            delay=SCROLL_DELAY
+        )
 
     def get_first_visible_streamer(self):
         cards = self.driver.find_elements(*self.STREAM_CARDS)
@@ -85,10 +83,7 @@ class TwitchPage:
                 By.CSS_SELECTOR,
                 'a[href$="/home"]'
             )
-
             streamer_name = streamer_link.text.strip()
-
-            print(f"Selected streamer: {streamer_name}")
 
             return card, streamer_name
 
@@ -96,15 +91,12 @@ class TwitchPage:
             "No visible streamer cards found after scrolling"
         )
 
-
     def open_streamer(self, streamer_card):
         thumbnail_button = streamer_card.find_element(
             By.CSS_SELECTOR,
             ":scope > button"
         )
-
         thumbnail_button.click()
-
 
     def is_player_displayed(self):
         players = self.driver.find_elements(*self.VIDEO_PLAYER)

@@ -1,6 +1,8 @@
 
-from selenium.webdriver.support.ui import WebDriverWait
+import time
+
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class BrowserActions:
@@ -22,8 +24,6 @@ class BrowserActions:
         return element
 
     def scroll_down(self, times=2, delay=2):
-        import time
-
         for index in range(times):
             before = self.driver.execute_script(
                 "return window.scrollY"
@@ -43,7 +43,6 @@ class BrowserActions:
                 f"Scroll {index + 1}/{times}: "
                 f"{before} -> {after}"
             )
-
 
     def is_in_viewport(self, element):
         return self.driver.execute_script(
