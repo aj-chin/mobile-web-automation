@@ -5,8 +5,10 @@ __pycache__/
 .pytest_cache/
 .venv/
 
-# Screenshots
+# Screenshots and Recordings
 screenshots/**/*.png
+recordings/*.mp4
+recordings/palette.png
 
 # Environment
 .env

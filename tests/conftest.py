@@ -1,4 +1,6 @@
 
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -8,7 +10,9 @@ from selenium.webdriver.chrome.options import Options
 def driver():
     options = Options()
 
-    options.add_argument("--headless=new")
+    if os.getenv("RECORD_TEST") != "1":
+        options.add_argument("--headless=new")
+
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
