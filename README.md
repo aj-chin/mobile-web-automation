@@ -163,3 +163,9 @@ This avoids relying on a fixed streamer name, which may become unavailable as li
 - **Browser coverage:** The test currently runs on Chrome with Pixel 7 emulation.
 
 Potential improvements include condition-based waits, richer failure diagnostics, additional test scenarios, and broader device coverage.
+
+## Test Execution Demo
+
+The following GIF shows a live Selenium test run using Chrome's Pixel 7 mobile emulation.
+
+![Twitch mobile automation demo](recordings/twitch_test.gif)
